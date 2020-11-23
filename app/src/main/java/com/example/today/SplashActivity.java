@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
                 mp.start();
             }
         });
-        timer = new com.example.today.CustomCountDownTimer(5, new com.example.today.CustomCountDownTimer.ICountDownHandler() {
+        timer = new com.example.today.CustomCountDownTimer(1, new com.example.today.CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {
                 mTvTimer.setText(time+"秒");
