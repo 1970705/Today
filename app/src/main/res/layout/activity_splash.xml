@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <com.example.today.FullScreenVideoView
+        <com.example.today.splash.FullScreenVideoView
             android:id="@+id/vv_play"
             style="@style/video_view_style" />
         <TextView

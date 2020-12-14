@@ -1,4 +1,5 @@
-package com.example.today;
+package com.example.today.mvp;
 
 public interface IMvpView {
+    MvpControler getMvpControler();
 }

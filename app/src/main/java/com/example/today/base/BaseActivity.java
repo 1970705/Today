@@ -1,9 +1,8 @@
-package com.example.today;
+package com.example.today.base;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.today.mvp.view.LifeCircleMvpActivity;
 

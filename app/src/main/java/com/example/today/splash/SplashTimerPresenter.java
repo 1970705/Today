@@ -1,10 +1,8 @@
-package com.example.today;
+package com.example.today.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.today.mvp.IMvpView;
-import com.example.today.mvp.ISplashActivityContract;
 import com.example.today.mvp.base.BaseMvpPresenter;
 
 //p层

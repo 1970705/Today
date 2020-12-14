@@ -1,6 +1,5 @@
-package com.example.today;
+package com.example.today.main;
 
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -8,16 +7,21 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.today.R;
+import com.example.today.base.BaseActivity;
+import com.example.today.base.Viewinject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 
 @Viewinject(mainlayoutid = R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IMainActivityContract.Iview{
 
-    FloatingActionButton actionButton;
+    //
+    IMainActivityContract.IPresenter mPresenter = new MainActivityPresenter(this);
+
+//    FloatingActionButton actionButton;
     @BindView(R.id.fac_main_home)
     FloatingActionButton facMainHome;
     @BindView(R.id.rb_main_shanghai)
@@ -40,8 +44,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void afterBindView() {
+        initHomeFragment();
         changeAnima(rgMainBottom,rgMainTop);
         initClick();
+    }
+    //初始化Fragment
+    private void initHomeFragment() {
+        mPresenter.initHomeFragment();
     }
 
     public void

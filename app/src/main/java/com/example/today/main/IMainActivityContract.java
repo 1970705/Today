@@ -1,23 +1,20 @@
-package com.example.today.splash;
+package com.example.today.main;
 
 import com.example.today.mvp.ILifeCircle;
 import com.example.today.mvp.IMvpView;
 import com.example.today.mvp.MvpControler;
 
-public interface ISplashActivityContract {
+public interface IMainActivityContract {
     interface Iview extends IMvpView {
-        void setTvTimer(String timer);
+
     }
 
     interface IPresenter extends ILifeCircle {
-        void initTimer();
+
+        void initHomeFragment();
     }
 
     Iview emptyView = new Iview() {
-        @Override
-        public void setTvTimer(String timer) {
-
-        }
 
         @Override
         public MvpControler getMvpControler() {

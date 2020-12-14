@@ -1,18 +1,18 @@
-package com.example.today;
+package com.example.today.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 public interface ILifeCircle {
-    void onCread(Bundle savedInstanceState, Intent intent, Bundle getArguments);
+    void onCreate(Bundle savedInstanceState, Intent intent, Bundle getArguments);
     void onActivityCreated(Bundle savedInstanceState, Intent intent, Bundle getArguments);
     void onStart();
     void onResume();
     void onPause();
     void onStop();
-    void onDsitroy();
+    void onDestroy();
     void destroyView();
-    void onViewDestory();
+    void onViewDestroy();
     void onNewIntent(Intent intent);
     void onActivityResult(int requestCode, int resultCode, Intent data);
     void onSaveInstanceState(Bundle bundle);

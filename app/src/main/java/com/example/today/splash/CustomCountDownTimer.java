@@ -1,4 +1,4 @@
-package com.example.today;
+package com.example.today.splash;
 
 
 import android.os.Handler;
