@@ -37,15 +37,24 @@ public class MainActivity extends BaseActivity {
 
     private boolean isChangeTopOrBottom;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        changeAnima(rgMainBottom,rgMainTop);
 
+    @Override
+    public void afterBindView() {
+        changeAnima(rgMainBottom,rgMainTop);
+        initClick();
+    }
+
+    public void
+    initClick() {
+        facMainHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.onClick(v);
+            }
+        });
     }
 
 
-    @OnClick(R.id.fac_main_home)
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fac_main_home:
@@ -64,7 +73,7 @@ public class MainActivity extends BaseActivity {
         gone.clearAnimation();//清除动画
         Animation animationGone = AnimationUtils.loadAnimation(this,R.anim.main_tab_translate_hide );
         gone.startAnimation(animationGone);
-        gone.setVisibility(View.GONE);//把控件隐藏掉
+        gone.setVisibility(View.GONE);//动画结束后把控件隐藏掉
 
         //展示的动画
         show.clearAnimation();

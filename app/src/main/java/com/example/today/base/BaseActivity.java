@@ -5,9 +5,11 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.today.mvp.view.LifeCircleMvpActivity;
+
 import butterknife.ButterKnife;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends LifeCircleMvpActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,12 +20,20 @@ public class BaseActivity extends AppCompatActivity {
             int mainlayoutid = annotation.mainlayoutid();
             if (mainlayoutid > 0){//说明我们给他赋值了,然后我们把这个id放进去
                 setContentView(mainlayoutid);
-                ButterKnife.bind(this);
+                bindView();
+                afterBindView();
             }else{
                 throw new RuntimeException("mainlayoutid < 0");
             }
         }else {
             throw new RuntimeException("annotation = null");
         }
+    }
+//模板方法设计模式
+    public abstract void afterBindView();
+
+    //View的依赖注入绑定
+    private void bindView() {
+        ButterKnife.bind(this);
     }
 }
