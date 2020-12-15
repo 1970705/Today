@@ -7,6 +7,8 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.today.R;
 import com.example.today.base.BaseActivity;
 import com.example.today.base.Viewinject;
@@ -89,5 +91,20 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
         Animation animationShow = AnimationUtils.loadAnimation(this,R.anim.main_tab_translate_show );
         show.startAnimation(animationShow);
         show.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void addFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_main_content,mFragment).commit();
+    }
+
+    @Override
+    public void showFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().show(mFragment).commit();
+    }
+
+    @Override
+    public void hideFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().hide(mFragment).commit();
     }
 }
