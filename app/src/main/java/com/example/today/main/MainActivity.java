@@ -26,8 +26,8 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     IMainActivityContract.IPresenter mPresenter = new MainActivityPresenter(this);
 
 //    FloatingActionButton actionButton;
-    @BindView(R.id.fac_main_home)
-    FloatingActionButton facMainHome;
+//    @BindView(R.id.fac_main_home)
+//    FloatingActionButton facMainHome;
     @BindView(R.id.rb_main_shanghai)
     RadioButton rbMainShanghai;
     @BindView(R.id.rb_main_hangzhou)
@@ -42,6 +42,8 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     RadioButton rbMainShenzhen;
     @BindView(R.id.rg_main_bottom)
     RadioGroup rgMainBottom;
+
+    FloatingActionButton facMainHome;
 
     private boolean isChangeTopOrBottom;
 
@@ -96,6 +98,7 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     }
 
     public void initClick() {
+        facMainHome = findViewById(R.id.fac_main_home);
         facMainHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
