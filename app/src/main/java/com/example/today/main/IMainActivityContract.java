@@ -19,6 +19,11 @@ public interface IMainActivityContract {
     interface IPresenter extends ILifeCircle {
 
         void initHomeFragment();
+        int getCurrentCheckedId();
+        void replaceFragment(int mCurrentFragmentIndex);
+        int getCurrentCheckedIndex();
+        int getTopPosition();
+        int getButtomPosition();
     }
 
     Iview emptyView = new Iview() {

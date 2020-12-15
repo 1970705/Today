@@ -4,10 +4,10 @@ package com.example.today.main;
 import androidx.fragment.app.Fragment;
 
 import com.example.today.R;
-import com.example.today.main.shanghai.BeiJingFragment;
-import com.example.today.main.shanghai.HangZhouFragment;
+import com.example.today.main.beijing.BeiJingFragment;
+import com.example.today.main.hangzhou.HangZhouFragment;
 import com.example.today.main.shanghai.ShangHaiFragment;
-import com.example.today.main.shanghai.ShenZhenFragment;
+import com.example.today.main.shenzhen.ShenZhenFragment;
 import com.example.today.mvp.base.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter{
@@ -15,6 +15,8 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
     private int mCurrentFragmentIndex;
     private Fragment[] mFragments = new Fragment[4];
     private int mCurrentCheckedId;
+    private int mTopPosition;
+    private int mButtomPosition;
 
 
     public MainActivityPresenter(IMainActivityContract.Iview view) {
@@ -32,8 +34,29 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         replaceFragment(mCurrentFragmentIndex);
     }
 
+    @Override
+    public int getCurrentCheckedId() {
+        return mCurrentCheckedId;
+    }
+
+    @Override
+    public int getCurrentCheckedIndex() {
+        return mCurrentFragmentIndex;
+    }
+
+    @Override
+    public int getTopPosition() {
+        return mTopPosition;
+    }
+
+    @Override
+    public int getButtomPosition() {
+        return mButtomPosition;
+    }
+
+    @Override
     //切换fragment的方法
-    private void replaceFragment(int mCurrentFragmentIndex) {
+    public void replaceFragment(int mCurrentFragmentIndex) {
         for (int i = 0; i <mFragments.length ; i++) {
             if (mCurrentFragmentIndex != i){
                 if (mFragments[i] !=null){
@@ -57,15 +80,19 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         switch (mCurrentFragmentIndex){
             case 0:
                 mCurrentCheckedId = R.id.rb_main_shanghai;
+                mTopPosition = 0;
                 break;
             case 1:
                 mCurrentCheckedId = R.id.rb_main_hangzhou;
+                mTopPosition = 1;
                 break;
             case 2:
                 mCurrentCheckedId = R.id.rb_main_beijing;
+                mButtomPosition = 2;
                 break;
             case 3:
                 mCurrentCheckedId = R.id.rb_main_shenzhen;
+                mButtomPosition = 3;
                 break;
         }
     }

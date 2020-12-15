@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import com.example.today.R;
 import com.example.today.base.BaseActivity;
 import com.example.today.base.Viewinject;
+import com.example.today.main.tools.MainConstantTool;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 @Viewinject(mainlayoutid = R.layout.activity_main)
@@ -49,14 +51,51 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
         initHomeFragment();
         changeAnima(rgMainBottom,rgMainTop);
         initClick();
+        initCheckListener();
     }
+
+    private void initCheckListener() {
+        rbMainShanghai.setChecked(true);
+        rgMainTop.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == mPresenter.getCurrentCheckedId()){
+                    return;
+                }
+                switch (checkedId){
+                    case R.id.rb_main_shanghai:
+                        mPresenter.replaceFragment(MainConstantTool.SHANGHAI);
+                        break;
+                    case R.id.rb_main_hangzhou:
+                        mPresenter.replaceFragment(MainConstantTool.HANGZHOU);
+                        break;
+                }
+            }
+        });
+        rgMainBottom.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == mPresenter.getCurrentCheckedId()){
+                    return;
+                }
+                switch (checkedId){
+                    case R.id.rb_main_beijing:
+                        mPresenter.replaceFragment(MainConstantTool.BEIJING);
+                        break;
+                    case R.id.rb_main_shenzhen:
+                        mPresenter.replaceFragment(MainConstantTool.SHENZHEN);
+                        break;
+                }
+            }
+        });
+    }
+
     //初始化Fragment
     private void initHomeFragment() {
         mPresenter.initHomeFragment();
     }
 
-    public void
-    initClick() {
+    public void initClick() {
         facMainHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,18 +104,44 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
         });
     }
 
-
+    @OnClick(R.id.fac_main_home)
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fac_main_home:
             isChangeTopOrBottom = !isChangeTopOrBottom;
             if (isChangeTopOrBottom){
                 changeAnima(rgMainTop,rgMainBottom);
+                handleTopPosition();
             }else {
                 changeAnima(rgMainBottom,rgMainTop);
+                handleBottomPosition();
             }
             break;
         }
+    }
+
+    //北京  深圳
+    private void handleBottomPosition() {
+        if (mPresenter.getTopPosition()!=1){
+            mPresenter.replaceFragment(0);
+            rbMainShanghai.setChecked(true);
+        }else{
+            mPresenter.replaceFragment(1);
+            rbMainHangzhou.setChecked(true);
+        }
+
+    }
+
+    // 上海  杭州
+    private void handleTopPosition() {
+        if (mPresenter.getButtomPosition() !=3){
+            mPresenter.replaceFragment(2);
+            rbMainBeijing.setChecked(true);
+        }else {
+            mPresenter.replaceFragment(3);
+            rbMainShenzhen.setChecked(true);
+        }
+
     }
 
     private void changeAnima(RadioGroup gone,RadioGroup show) {
